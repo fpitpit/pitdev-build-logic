@@ -1,27 +1,18 @@
 package fr.pitdev.plugins
 
 import com.android.build.api.variant.AndroidComponentsExtension
-import com.android.build.api.variant.Variant
-import groovy.xml.XmlSlurper
-import groovy.xml.slurpersupport.NodeChild
-import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.ListProperty
-import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.register
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
-import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import org.gradle.testing.jacoco.tasks.JacocoCoverageVerification
 import org.gradle.testing.jacoco.tasks.JacocoReport
-import org.gradle.testing.jacoco.tasks.rules.JacocoViolationRule
-import java.io.File
 import java.util.Locale
 
 class JacocoReportsPlugin : Plugin<Project> {
@@ -49,12 +40,12 @@ class JacocoReportsPlugin : Plugin<Project> {
     )
 
     private val limitRules: List<LimitRule> = listOf(
-        LimitRule(LIMIT_TYPE.INSTRUCTION, 0.0),
-        LimitRule(LIMIT_TYPE.BRANCH, 0.0),
-        LimitRule(LIMIT_TYPE.LINE, 0.0),
-        LimitRule(LIMIT_TYPE.COMPLEXITY, 0.0),
-        LimitRule(LIMIT_TYPE.METHOD, 0.0),
-        LimitRule(LIMIT_TYPE.CLASS, 0.0)
+        LimitRule(LimitType.INSTRUCTION, 0.0),
+        LimitRule(LimitType.BRANCH, 0.0),
+        LimitRule(LimitType.LINE, 0.0),
+        LimitRule(LimitType.COMPLEXITY, 0.0),
+        LimitRule(LimitType.METHOD, 0.0),
+        LimitRule(LimitType.CLASS, 0.0)
     )
 
 
@@ -84,8 +75,8 @@ class JacocoReportsPlugin : Plugin<Project> {
         androidComponents.onVariants { variant ->
             val buildType = variant.buildType ?: ""
             val flavorName = variant.flavorName.takeIf { it?.isNotEmpty() == true } ?: ""
-            var sourceName: String
-            var sourcePath: String
+            val sourceName: String
+            val sourcePath: String
 
             if (flavorName.isEmpty()) {
                 sourceName = buildType
@@ -160,10 +151,6 @@ class JacocoReportsPlugin : Plugin<Project> {
             classDirectories.setFrom(files(javaDirectories, kotlinDirectories))
             additionalClassDirs.setFrom(files(coverageSrcDirectories))
             sourceDirectories.setFrom(files(coverageSrcDirectories))
-            getExecutionData().setFrom(
-                files("${project.buildDir}/outputs/unit_test_code_coverage/${sourceName}UnitTest/${testTaskName}.exec")
-            )
-
             executionData.setFrom(file("${project.buildDir}/outputs/unit_test_code_coverage/${sourceName}UnitTest/${testTaskName}.exec"))
 
             reports {
@@ -173,41 +160,74 @@ class JacocoReportsPlugin : Plugin<Project> {
 
         }
 
-        jacocoCoverageVerification(extension, sourceName, testTaskName)
+        jacocoCoverageVerification(
+            extension = extension,
+            sourceName = sourceName,
+            sourcePath = sourcePath,
+            testTaskName = testTaskName,
+            buildTypeName = buildTypeName,
+            flavorName = flavorName
+        )
 
     }
 
     private fun Project.jacocoCoverageVerification(
         extension: JacocoReportsPluginExtension,
         sourceName: String,
+        sourcePath: String,
+        flavorName: String,
+        buildTypeName: String,
         testTaskName: String
     ) {
         tasks.register<JacocoCoverageVerification>("${testTaskName}CoverageVerification") {
             group = "verification"
             dependsOn("${testTaskName}Coverage")
-            getExecutionData().setFrom(
+            val javaDirectories = fileTree(
+                "${project.buildDir}/intermediates/javac/${sourcePath}/classes"
+            ) { exclude(excludedFiles) }
+
+            val kotlinDirectories = fileTree(
+                "${project.buildDir}/tmp/kotlin-classes/${sourcePath}"
+            ) { exclude(excludedFiles) }
+
+            val coverageSrcDirectories = listOf(
+                "src/main/java",
+                "src/$flavorName/java",
+                "src/$buildTypeName/java"
+            )
+
+            classDirectories.setFrom(files(javaDirectories, kotlinDirectories))
+            additionalClassDirs.setFrom(files(coverageSrcDirectories))
+            sourceDirectories.setFrom(files(coverageSrcDirectories))
+            executionData.setFrom(file("${project.buildDir}/outputs/unit_test_code_coverage/${sourceName}UnitTest/${testTaskName}.exec"))
+
+            executionData.setFrom(
                 files("${project.buildDir}/outputs/unit_test_code_coverage/${sourceName}UnitTest/${testTaskName}.exec")
             )
             val limitRules = extension.limitRules.getOrElse(emptyList())
             val includePackages = extension.includes.getOrElse(emptyList())
-            logger.quiet("limits for ${sourceName} = ${limitRules}, includesPackage : ${includePackages}")
+            logger.quiet("limits for $sourceName = ${limitRules}, includesPackage : $includePackages")
             violationRules {
                 rule {
                     isEnabled = true
-                    element = "CLASS"
+                    element = "PACKAGE"
                     includes = includePackages
-
+                    excludes = listOf("**/ui/theme")
                     limitRules.forEach { limit ->
-
                         limit {
                             counter = limit.type.name
                             value = "COVEREDRATIO"
-                            minimum = limit.limit.toBigDecimal()
+                            takeIf { limit.maximum > 0 }?.let {
+                                maximum = limit.maximum.toBigDecimal()
+                            }
+                            takeIf { limit.minimum > 0 }?.let {
+                                minimum = limit.minimum.toBigDecimal()
+                            }
                         }
                     }
                 }
             }
-            logger.quiet("violation rules = ${violationRules}")
+
         }
     }
 }
@@ -217,8 +237,21 @@ interface JacocoReportsPluginExtension {
     val includes: ListProperty<String>
 }
 
-data class LimitRule(val type: LIMIT_TYPE, val limit: Double)
-enum class LIMIT_TYPE {
+data class LimitRule(val type: LimitType, val minimum: Double = 0.0, val maximum: Double = 0.0) {
+    init {
+        require(minimum >= 0) {
+            "$minimum must be >= 0"
+        }
+        require(maximum >= 0) {
+            "$maximum must be >= 0"
+        }
+        require(maximum <= 1) {
+            "$maximum must be between 0.0 and 1.O"
+        }
+    }
+}
+
+enum class LimitType {
     INSTRUCTION,
     BRANCH,
     LINE,

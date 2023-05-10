@@ -1,5 +1,5 @@
 import fr.pitdev.plugins.JacocoReportsPluginExtension
-import fr.pitdev.plugins.LIMIT_TYPE
+import fr.pitdev.plugins.LimitType
 import fr.pitdev.plugins.LimitRule
 
 plugins {
@@ -16,12 +16,12 @@ plugins {
 configure<JacocoReportsPluginExtension> {
     limitRules.set(
         listOf(
-            LimitRule(LIMIT_TYPE.INSTRUCTION, 80.0),
-            LimitRule(LIMIT_TYPE.BRANCH, 80.0),
-            LimitRule(LIMIT_TYPE.CLASS, 80.0),
-            LimitRule(LIMIT_TYPE.COMPLEXITY, 80.0),
-            LimitRule(LIMIT_TYPE.LINE, 80.0),
-            LimitRule(LIMIT_TYPE.METHOD, 80.0)
+            LimitRule(LimitType.INSTRUCTION, minimum = 0.8),
+            LimitRule(LimitType.BRANCH, minimum = 0.5),
+            LimitRule(LimitType.CLASS, minimum = 0.5),
+            LimitRule(LimitType.COMPLEXITY, maximum = 0.5),
+            LimitRule(LimitType.LINE, minimum = 0.8),
+            LimitRule(LimitType.METHOD, minimum = 0.8)
         )
     )
     includes.set(listOf("com.example.tutojacocokts.*"))
