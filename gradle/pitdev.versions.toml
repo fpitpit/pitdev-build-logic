@@ -1,0 +1,202 @@
+[versions]
+
+androidGradlePlugin = "8.0.1"
+androidxActivity = "1.7.1"
+androidxAppCompat = "1.6.1"
+androidxArchCore = "2.2.0"
+androidxCollection = "1.2.0"
+androidxConstraintLayout = "2.1.4"
+androidxCore = "1.10.0"
+androidxFragment = "1.5.7"
+androidxHilt = "1.0.0"
+androidxLegacySupportV4 = "1.0.0"
+androidXLifecyle = "2.6.1"
+androidxNavigation = "2.5.3"
+androidxPreference = "1.2.0"
+androidxRoom = "2.5.1"
+androidxSqlite = "2.3.1"
+androidxSwipeRefreshLayout = "1.1.0"
+androidxTestEspresso = "3.5.1"
+androidxTestExt = "1.1.5"
+androidxTestExtTruth = "1.5.0"
+androidxTestMonitor = "1.6.1"
+androidxTestOrchestrator = "1.4.2"
+androidxTestRules = "1.5.0"
+androidxTestRunner = "1.5.2"
+
+crashlyticsPlugin = "2.9.5"
+
+desugar = "2.0.3"
+
+firebaseBom = "32.0.0"
+
+googleAndroidMaterial = "1.9.0"
+googleAndroidPlayIntegrity = "1.1.0"
+googleCodeGson = "2.10.1"
+googleDaggerHilt = "2.45"
+googleServices = "4.3.15"
+googleTruth = "1.1.3"
+
+jacoco = "0.8.10"
+javaxAnnotationApi = "1.3.2"
+jetbrainsKotlinx = "1.7.0"
+junit = "4.13.2"
+
+navigationSafeArgs = "2.5.3"
+
+kotlin = "1.8.10"
+kspPlugin = "1.8.21-1.0.11"
+
+mockk = "1.13.5"
+
+robolectric = "4.10.2"
+
+sonarqubePlugin = "4.0.0.2929"
+squareupMoshi = "1.14.0"
+squareupOkhttp3 = "4.11.0"
+squareupRetrofit2 = "2.9.0"
+
+[libraries]
+
+#android tools
+android-tools-build-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+android-tools-desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
+#androidx activity
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidxActivity" }
+#androidx appcompat
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
+#androidx arch core
+androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidxArchCore" }
+#androidx collection
+androidx-collection-ktx = { group = "androidx.collection", name = "collection-ktx", version.ref = "androidxCollection" }
+#androidx constraint layout
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidxConstraintLayout" }
+#androidx core
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+#androidx fragment
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "androidxFragment" }
+androidx-fragment-testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "androidxFragment" }
+#androidx hilt
+androidx-hilt-navigation-fragment = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "androidxHilt" }
+#androidx legacy
+androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "androidxLegacySupportV4" }
+#androidx lifecycle
+androidx-lifecyle-livedata-core-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-core-ktx", version.ref = "androidXLifecyle" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "androidXLifecyle" }
+androidx-lifecyle-reactivestreams-ktx = { group = "androidx.lifecycle", name = "lifecycle-reactivestreams-ktx", version.ref = "androidXLifecyle" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidXLifecyle" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidXLifecyle" }
+#androidx navigation
+androidx-navigation-dynamic-features-fragment = { group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "androidxNavigation" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidxNavigation" }
+androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidxNavigation" }
+#androidx preference
+androidx-preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "androidxPreference" }
+#androidx room
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidxRoom" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
+#androidx sqlite
+androidx-sqlite-ktx = { group = "androidx.sqlite", name = "sqlite-ktx", version.ref = "androidxSqlite" }
+#androidx swiperefreshlayout
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "androidxSwipeRefreshLayout" }
+#androidx test espresso
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxTestEspresso" }
+#androidx test ext
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExt" }
+#androidx test ext truth
+androidx-test-ext-truth = { group = "androidx.test.ext", name = "truth", version.ref = "androidxTestExtTruth" }
+#androidx test monitor
+androidx-test-monitor = { group = "androidx.test", name = "monitor", version.ref = "androidxTestMonitor" }
+#androidx test orchestrator
+androidx-test-orchestrator = { group = "androidx.test", name = "orchestrator", version.ref = "androidxTestOrchestrator" }
+#androidx test rules
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTestRules" }
+#androidx test runner
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
+
+#firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-crashlytics-ktx = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+
+#google android material
+google-android-material = { group = "com.google.android.material", name = "material", version.ref = "googleAndroidMaterial" }
+#google android play integrity
+google-android-play-integrity = { group = "com.google.android.play", name = "integrity", version.ref = "googleAndroidPlayIntegrity" }
+#google code gson
+google-code-gson = { group = "com.google.code.gson", name = "gson", version.ref = "googleCodeGson" }
+#google dagger hilt
+google-dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "googleDaggerHilt" }
+google-dagger-hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "googleDaggerHilt" }
+google-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "googleDaggerHilt" }
+#google truth
+google-truth = { group = "com.google.truth", name = "truth", version.ref = "googleTruth" }
+
+#javax annotation
+javax-annotation-api = { group = "javax.annotation", name = "javax.annotation-api", version.ref = "javaxAnnotationApi" }
+#jetbrains kotlin
+jetbrains-kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+#jetbrains kotlinx
+jetbrains-kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "jetbrainsKotlinx" }
+jetbrains-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "jetbrainsKotlinx" }
+#junit
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+#mockk
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+
+#robolectric
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+
+#squareup okhttp3
+squareup-okhttp3-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "squareupOkhttp3" }
+sqaureup-okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor" }
+sqaureup-okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
+#squareup moshi
+squareup-moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "squareupMoshi" }
+squareup-moshi-kotlin-codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "squareupMoshi" }
+#sqaureup retrofit2
+squareup-retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "squareupRetrofit2" }
+squareup-retrofit2-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "squareupRetrofit2" }
+sqaureup-retrofit2-converter-scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "squareupRetrofit2" }
+squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "squareupRetrofit2" }
+
+#CLASSPATH PLUGIN
+jacoco = { group = "org.jacoco",  name ="org.jacoco.core", version.ref = "jacoco" }
+
+navigation-safeargs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgs" }
+
+[bundles]
+
+androidx-lifecycle = ["androidx-lifecycle-livedata-ktx", "androidx-lifecycle-viewmodel-ktx", "androidx-lifecycle-runtime-ktx",
+    "androidx-lifecyle-livedata-core-ktx", "androidx-lifecyle-reactivestreams-ktx"]
+androidx-navigation = ["androidx-navigation-dynamic-features-fragment", "androidx-navigation-fragment-ktx", "androidx-navigation-ui-ktx"]
+androidx-room-sqlite = ["androidx-room-ktx", "androidx-room-runtime", "androidx-sqlite-ktx"]
+
+firebase-analytics-crashlytics-ktx = ["firebase-analytics-ktx", "firebase-crashlytics-ktx"]
+
+sqaureup-okhttp-logging-interceptor = ["sqaureup-okhttp3-okhttp", "sqaureup-okhttp3-logging-interceptor"]
+squareup-retrofit2-moshi-gson-scalars = ["squareup-retrofit2-retrofit", "squareup-retrofit2-converter-moshi", "squareup-retrofit2-converter-gson",
+    "sqaureup-retrofit2-converter-scalars", "squareup-moshi-kotlin", "squareup-moshi-kotlin-codegen", "google-code-gson"]
+
+[plugins]
+
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+
+crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsPlugin" }
+
+dagger-hilt-android-plugin = { id = "com.google.dagger.hilt.android", version.ref = "googleDaggerHilt" }
+
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
+
+navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationSafeArgs" }
+
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqubePlugin" }
