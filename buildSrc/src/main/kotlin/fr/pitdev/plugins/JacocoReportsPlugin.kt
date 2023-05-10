@@ -13,6 +13,9 @@ import org.gradle.kotlin.dsl.register
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.tasks.JacocoCoverageVerification
 import org.gradle.testing.jacoco.tasks.JacocoReport
+import org.gradle.testing.jacoco.tasks.rules.JacocoLimit
+import org.gradle.testing.jacoco.tasks.rules.JacocoViolationRule
+import org.gradle.testing.jacoco.tasks.rules.JacocoViolationRulesContainer
 import java.util.Locale
 
 class JacocoReportsPlugin : Plugin<Project> {
@@ -39,29 +42,17 @@ class JacocoReportsPlugin : Plugin<Project> {
         "**/BR.class"
     )
 
-    private val limitRules: List<LimitRule> = listOf(
-        LimitRule(LimitType.INSTRUCTION, 0.0),
-        LimitRule(LimitType.BRANCH, 0.0),
-        LimitRule(LimitType.LINE, 0.0),
-        LimitRule(LimitType.COMPLEXITY, 0.0),
-        LimitRule(LimitType.METHOD, 0.0),
-        LimitRule(LimitType.CLASS, 0.0)
-    )
-
-
-    private val includesPackage: List<String> = emptyList()
-
     override fun apply(project: Project) {
         val extension: JacocoReportsPluginExtension =
-            project.extensions.create<JacocoReportsPluginExtension>(
+            project.extensions.create(
                 name = "limitsRules",
             )
         with(project) {
             plugins.run {
                 apply("jacoco")
             }
-            extension.includes.convention(includesPackage)
-            extension.limitRules.convention(limitRules)
+            extension.includes.convention(emptyList())
+            extension.limitRules.convention(emptyList())
             jacocoOnVariant(extension)
             dependencies {
                 "implementation"(libs.findLibrary("jacoco").get())
@@ -235,6 +226,7 @@ class JacocoReportsPlugin : Plugin<Project> {
 interface JacocoReportsPluginExtension {
     val limitRules: ListProperty<LimitRule>
     val includes: ListProperty<String>
+    val excludes: ListProperty<String>
 }
 
 data class LimitRule(val type: LimitType, val minimum: Double = 0.0, val maximum: Double = 0.0) {
