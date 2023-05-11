@@ -22,6 +22,7 @@ androidxTestExt = "1.1.5"
 androidxTestExtTruth = "1.5.0"
 androidxTestMonitor = "1.6.1"
 androidxTestOrchestrator = "1.4.2"
+
 androidxTestRules = "1.5.0"
 androidxTestRunner = "1.5.2"
 
