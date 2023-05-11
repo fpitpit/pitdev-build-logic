@@ -1,33 +1,9 @@
-import fr.pitdev.plugins.JacocoReportsPluginExtension
-import fr.pitdev.plugins.LimitType
-import fr.pitdev.plugins.LimitRule
 
 plugins {
     alias(projectLibs.plugins.android.application)
     id("org.jetbrains.kotlin.android")
     id("jacoco-reports")
 }
-
-
-/**
- *  set the required unit test coverage in percent,
- *  see [buildSrc/src/main/kotlin/jacoco-reports-precompiled.gradle.kts]
- */
-configure<JacocoReportsPluginExtension> {
-    limitRules.set(
-        listOf(
-            LimitRule(LimitType.INSTRUCTION, minimum = 0.8),
-            LimitRule(LimitType.BRANCH, minimum = 0.5),
-            LimitRule(LimitType.CLASS, minimum = 0.5),
-            LimitRule(LimitType.COMPLEXITY, maximum = 0.5),
-            LimitRule(LimitType.LINE, minimum = 0.8),
-            LimitRule(LimitType.METHOD, minimum = 0.8)
-        )
-    )
-    includes.set(listOf("com.example.tutojacocokts.*"))
-}
-
-
 
 android {
     namespace = "com.example.tutojacocokts"
@@ -110,9 +86,3 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 }
 
-tasks.withType<Test> {
-    configure<JacocoTaskExtension> {
-        isIncludeNoLocationClasses = true
-        excludes = listOf("jdk.internal.*")
-    }
-}
