@@ -1,11 +1,11 @@
 plugins {
     `kotlin-dsl`
-    //`kotlin-dsl-precompiled-script-plugins`
 }
 
 repositories {
     google()
     mavenCentral()
+    gradlePluginPortal() // so that external plugins can be resolved in dependencies section
 }
 
 gradlePlugin {
@@ -19,10 +19,8 @@ gradlePlugin {
 
 }
 
-
 dependencies {
-    implementation("com.android.tools.build:gradle-api:8.0.1")
-    implementation(kotlin("stdlib"))
+    implementation(libs.android.tools.build.gradle.api)
     gradleApi()
 }
 

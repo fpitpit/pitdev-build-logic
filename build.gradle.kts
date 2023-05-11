@@ -1,8 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    alias(projectLibs.plugins.kotlin.android) apply false
-    alias(projectLibs.plugins.android.application) apply false
-    alias(projectLibs.plugins.android.library) apply false
+    alias(libs.plugins.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
 }
 
 buildscript {
@@ -11,9 +11,8 @@ buildscript {
         google()
     }
     dependencies {
-        //classpath(Config.Dependencies.androidTools)
-        classpath(projectLibs.android.tools.build.gradle)
-        classpath(kotlin("gradle-plugin", version = "1.4.32"))
+        classpath(libs.android.tools.build.gradle)
+        classpath(libs.jetbrains.kotlin.gradle.plugin)
     }
 }
 

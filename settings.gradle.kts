@@ -13,7 +13,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs {
-        create("projectLibs") {
+        create("libs") {
             from(files("gradle/pitdev.versions.toml"))
         }
     }
