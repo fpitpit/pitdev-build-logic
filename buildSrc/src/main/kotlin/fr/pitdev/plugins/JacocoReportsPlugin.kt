@@ -24,7 +24,7 @@ import java.util.Locale
 
 class JacocoReportsPlugin : Plugin<Project> {
     private val Project.libs: VersionCatalog
-        get() = extensions.findByType(VersionCatalogsExtension::class)?.named("projectLibs")
+        get() = extensions.findByType(VersionCatalogsExtension::class)?.named("libs")
             ?: error("Cannot find version catalog libs: $name")
 
     private val Project.jacoco: JacocoPluginExtension

@@ -5,8 +5,9 @@ androidxActivity = "1.7.1"
 androidxAppCompat = "1.6.1"
 androidxArchCore = "2.2.0"
 androidxCollection = "1.2.0"
+androidxComposeBom = "2023.05.00"
 androidxConstraintLayout = "2.1.4"
-androidxCore = "1.10.0"
+androidxCore = "1.10.1"
 androidxFragment = "1.5.7"
 androidxHilt = "1.0.0"
 androidxLegacySupportV4 = "1.0.0"
@@ -24,6 +25,7 @@ androidxTestOrchestrator = "1.4.2"
 androidxTestRules = "1.5.0"
 androidxTestRunner = "1.5.2"
 
+composeKotlinCompilerExtensionVersion = "1.4.2"
 crashlyticsPlugin = "2.9.5"
 
 desugar = "2.0.3"
@@ -59,10 +61,47 @@ squareupRetrofit2 = "2.9.0"
 [libraries]
 
 #android tools
-android-tools-build-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 android-tools-desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
+#android tools build
+android-tools-build-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+android-tools-build-gradle-api = { group = "com.android.tools.build", name = "gradle-api", version.ref = "androidGradlePlugin" }
 #androidx activity
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidxActivity" }
+#androix compose
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
+## Material Design 3
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+## or material 2
+androidx-compose-material = { group = "androidx.compose.material", name = "material" }
+## or skip Material Design and build directly on top of foundational components
+androidx-compose-fundation = { group = "androidx.compose.foundation", name = "foundation" }
+## or only import the main APIs for the underlying toolkit systems,
+## such as input and measurement/layout
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+## androidx compose graphics
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+## Android Studio Preview support
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+## compose  UI Tests
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+## Optional - Included automatically by material, only add when you need
+## the icons but not the material library (e.g. when using Material3 or a
+##  custom design system based on Foundation)
+androidx-compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
+## Optional - Add full set of material icons
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+## Optional - Add window size utils
+androidx-compose-material3-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+## Optional - Integration with activities
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+## Optional - Integration with ViewModels
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidXLifecyle" }
+## Optional - Integration with LiveData
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime-livedata" }
+## Optional - Integration with RxJava
+androidx-compose-runtime-rxjava2 = { group = "androidx.compose.runtime", name = "runtime-rxjava2" }
 #androidx appcompat
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 #androidx arch core
@@ -164,12 +203,22 @@ sqaureup-retrofit2-converter-scalars = { group = "com.squareup.retrofit2", name 
 squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "squareupRetrofit2" }
 
 #CLASSPATH PLUGIN
-jacoco = { group = "org.jacoco",  name ="org.jacoco.core", version.ref = "jacoco" }
+
+jacoco = { group = "org.jacoco", name = "org.jacoco.core", version.ref = "jacoco" }
+jetbrains-kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+jetbrains-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 
 navigation-safeargs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgs" }
 
 [bundles]
-
+#implementation(libs.androidx.compose.ui)
+#    implementation(libs.androidx.compose.ui.graphics)
+#    implementation(libs.androidx.compose.ui.tooling.preview)
+#    implementation(libs.androidx.compose.material3)
+#    implementation(libs.androidx.lifecycle.viewmodel.compose)
+#    implementation(libs.androidx.activity.compose)
+androidx-compose = ["androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-ui-tooling-preview",
+    "androidx-compose-material3", "androidx-activity-compose", "androidx-lifecycle-viewmodel-compose"]
 androidx-lifecycle = ["androidx-lifecycle-livedata-ktx", "androidx-lifecycle-viewmodel-ktx", "androidx-lifecycle-runtime-ktx",
     "androidx-lifecyle-livedata-core-ktx", "androidx-lifecyle-reactivestreams-ktx"]
 androidx-navigation = ["androidx-navigation-dynamic-features-fragment", "androidx-navigation-fragment-ktx", "androidx-navigation-ui-ktx"]
@@ -192,9 +241,10 @@ dagger-hilt-android-plugin = { id = "com.google.dagger.hilt.android", version.re
 
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+jetbrains-kotlin-plugin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
 
 navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationSafeArgs" }
