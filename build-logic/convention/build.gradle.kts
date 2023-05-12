@@ -13,7 +13,7 @@ repositories {
 dependencies {
     api(libs.android.tools.build.gradle.api)
     api(libs.jetbrains.kotlin.gradle.plugin)
-    api("com.android.tools.build:gradle:8.0.1")
+    api(libs.android.tools.build.gradle)
     gradleApi()
 }
 

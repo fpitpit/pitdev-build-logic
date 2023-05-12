@@ -62,7 +62,7 @@ squareupRetrofit2 = "2.9.0"
 
 #android tools
 android-tools-desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
-#android tools build
+#android tools build (plugin com.android.application)
 android-tools-build-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 android-tools-build-gradle-api = { group = "com.android.tools.build", name = "gradle-api", version.ref = "androidGradlePlugin" }
 #androidx activity
