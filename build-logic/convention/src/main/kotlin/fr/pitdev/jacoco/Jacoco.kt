@@ -37,6 +37,7 @@ internal fun Project.configureJacoco() {
     androidComponentsExtension.onVariants { variant ->
         val testTaskName = "test${variant.name.capitalize()}UnitTest"
         val reportTask = tasks.register("jacoco${testTaskName.capitalize()}Report", JacocoReport::class.java) {
+            group = "reporting"
             dependsOn(testTaskName)
 
             reports {
