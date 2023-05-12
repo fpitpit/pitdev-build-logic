@@ -11,7 +11,7 @@ object ProjectConfig {
         const val versionCode = 1
         const val versionName = "1.0.0"
         val javaVersion: JavaVersion = JavaVersion.VERSION_17
-        val kotlinJvmVersion = "17"
+        val kotlinJvmVersion = javaVersion.toString()
 
     }
 }

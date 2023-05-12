@@ -1,4 +1,3 @@
-
 import fr.pitdev.config.ProjectConfig
 
 plugins {
