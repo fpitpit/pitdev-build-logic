@@ -3,7 +3,7 @@ import fr.pitdev.config.ProjectConfig
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("jacoco-reports")
+    id("jacoco-convention")
 }
 
 android {
