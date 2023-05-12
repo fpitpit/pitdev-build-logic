@@ -2,36 +2,23 @@ package fr.pitdev.plugins
 
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.Variant
-import fr.pitdev.config.ProjectConfig
-import fr.pitdev.config.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.api.provider.ListProperty
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.register
-import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
-import org.gradle.testing.jacoco.tasks.JacocoCoverageVerification
 import org.gradle.testing.jacoco.tasks.JacocoReport
-import org.gradle.testing.jacoco.tasks.rules.JacocoLimit
-import org.gradle.testing.jacoco.tasks.rules.JacocoViolationRule
-import org.gradle.testing.jacoco.tasks.rules.JacocoViolationRulesContainer
 import java.util.Locale
 
 class JacocoReportsPlugin : Plugin<Project> {
     private val Project.libs: VersionCatalog
         get() = extensions.findByType(VersionCatalogsExtension::class)?.named("libs")
             ?: error("Cannot find version catalog libs: $name")
-
-    private val Project.jacoco: JacocoPluginExtension
-        get() = extensions.findByName("jacoco") as? JacocoPluginExtension
-            ?: error("Not a Jacoco module: $name")
 
     private val excludedFiles = mutableSetOf(
         "**/R.class",
@@ -53,7 +40,8 @@ class JacocoReportsPlugin : Plugin<Project> {
             plugins.run {
                 apply("jacoco")
             }
-            val androidComponents = project.extensions.getByType(AndroidComponentsExtension::class.java)
+            val androidComponents =
+                project.extensions.getByType(AndroidComponentsExtension::class.java)
             tasks.withType(Test::class.java) {
                 configure<JacocoTaskExtension> {
                     isIncludeNoLocationClasses = true
@@ -71,40 +59,40 @@ class JacocoReportsPlugin : Plugin<Project> {
 
 
     private fun Project.jacocoOnVariant(variant: Variant) {
-            val buildType = variant.buildType ?: ""
-            val flavorName = variant.flavorName.takeIf { it?.isNotEmpty() == true } ?: ""
-            val sourceName: String
-            val sourcePath: String
+        val buildType = variant.buildType ?: ""
+        val flavorName = variant.flavorName.takeIf { it?.isNotEmpty() == true } ?: ""
+        val sourceName: String
+        val sourcePath: String
 
-            if (flavorName.isEmpty()) {
-                sourceName = buildType
-                sourcePath = buildType
-            } else {
-                sourceName = "${flavorName}${
-                    buildType.replaceFirstChar {
-                        if (it.isLowerCase()) it.titlecase(
-                            Locale.ENGLISH
-                        ) else it.toString()
-                    }
-                }"
-                sourcePath = "${flavorName}/${buildType}"
-            }
-
-            val testTaskName = "test${
-                sourceName.replaceFirstChar {
+        if (flavorName.isEmpty()) {
+            sourceName = buildType
+            sourcePath = buildType
+        } else {
+            sourceName = "${flavorName}${
+                buildType.replaceFirstChar {
                     if (it.isLowerCase()) it.titlecase(
                         Locale.ENGLISH
                     ) else it.toString()
                 }
-            }UnitTest"
+            }"
+            sourcePath = "${flavorName}/${buildType}"
+        }
 
-            registerCodeCoverageTask(
-                testTaskName = testTaskName,
-                sourceName = sourceName,
-                sourcePath = sourcePath,
-                flavorName = flavorName,
-                buildTypeName = buildType
-            )
+        val testTaskName = "test${
+            sourceName.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.ENGLISH
+                ) else it.toString()
+            }
+        }UnitTest"
+
+        registerCodeCoverageTask(
+            testTaskName = testTaskName,
+            sourceName = sourceName,
+            sourcePath = sourcePath,
+            flavorName = flavorName,
+            buildTypeName = buildType
+        )
     }
 
     private fun Project.registerCodeCoverageTask(

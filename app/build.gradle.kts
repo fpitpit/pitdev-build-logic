@@ -1,9 +1,8 @@
 import fr.pitdev.config.ProjectConfig
 
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    id("jacoco-convention")
+    id("android-application-convention")
+    id("android-application-jacoco-convention")
 }
 
 android {
@@ -73,6 +72,9 @@ dependencies {
     implementation(libs.bundles.androidx.lifecycle)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.jetbrains.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.compose.ui.test.junit4)
 
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
