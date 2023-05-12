@@ -2,6 +2,8 @@ package fr.pitdev.plugins
 
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.Variant
+import fr.pitdev.config.ProjectConfig
+import fr.pitdev.config.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog

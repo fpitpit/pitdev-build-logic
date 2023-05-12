@@ -1,6 +1,13 @@
 package fr.pitdev.config
 
 import org.gradle.api.JavaVersion
+import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalog
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.getByType
+
+val Project.libs: VersionCatalog
+    get() = extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
 
 object ProjectConfig {
 
@@ -11,7 +18,7 @@ object ProjectConfig {
         const val versionCode = 1
         const val versionName = "1.0.0"
         val javaVersion: JavaVersion = JavaVersion.VERSION_17
-        val kotlinJvmVersion = "17"
+        val kotlinJvmVersion = javaVersion.toString()
 
     }
 }
