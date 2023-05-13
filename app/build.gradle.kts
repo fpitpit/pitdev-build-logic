@@ -1,9 +1,9 @@
 import fr.pitdev.config.ProjectConfig
 
 plugins {
-    id("android-application-convention")
-    id("android-application-jacoco-convention")
-    id("android-compose-convention")
+    id("pitdev.android-application-convention")
+    id("pitdev.android-compose-convention")
+    id("pitdev.android-jacoco-convention")
 }
 
 android {
