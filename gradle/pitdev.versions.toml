@@ -35,7 +35,7 @@ firebaseBom = "32.0.0"
 googleAndroidMaterial = "1.9.0"
 googleAndroidPlayIntegrity = "1.1.0"
 googleCodeGson = "2.10.1"
-googleDaggerHilt = "2.45"
+googleDaggerHilt = "2.46.1"
 googleServices = "4.3.15"
 googleTruth = "1.1.3"
 
