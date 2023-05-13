@@ -1,10 +1,9 @@
-import fr.pitdev.config.ProjectConfig
 import fr.pitdev.config.libs
 
 private val libs = project.libs
 
 plugins {
-    id("android-application-convention")
+    id("pitdev.android-application-convention")
 }
 
 android {

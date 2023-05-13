@@ -24,14 +24,11 @@ android {
     }
 
     buildTypes {
-        android {
-            buildTypes {
-                debug {
-                    enableUnitTestCoverage = true
-                }
+        buildTypes {
+            debug {
+                enableUnitTestCoverage = true
             }
         }
-
         release {
             isMinifyEnabled = false
             proguardFiles(
