@@ -20,5 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "tutoJacocoKts"
+rootProject.name = "pitdev-build-logic-project"
 include(":app")
+
