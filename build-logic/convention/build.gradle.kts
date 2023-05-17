@@ -1,8 +1,4 @@
 
-project.group = group
-project.version = version
-
-
 plugins {
     `kotlin-dsl`
     `maven-publish`
@@ -32,13 +28,20 @@ publishing {
     publications {
         register<MavenPublication>(project.name) {
             artifactId = project.name
+            logger.quiet("group = $group")
             logger.quiet("artifactId = $artifactId")
+            logger.quiet("version = $version")
+
             from(components["java"])
         }
     }
     publications {
         register<MavenPublication>("PitDevVersionCatalog") {
             artifactId = "version-catalog"
+            logger.quiet("group = $group")
+            logger.quiet("artifactId = $artifactId")
+            logger.quiet("version = $version")
+
             artifact("../../gradle/pitdev.versions.toml")
         }
     }
