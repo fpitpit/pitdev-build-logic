@@ -5,10 +5,6 @@ buildscript {
         mavenCentral()
         google()
     }
-    //dependencies {
-    //    classpath(libs.android.tools.build.gradle)
-    //    classpath(libs.jetbrains.kotlin.gradle.plugin)
-    //}
 }
 
 plugins {

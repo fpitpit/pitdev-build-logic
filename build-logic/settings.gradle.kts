@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.precompile.PrecompiledProjectScript.NullPluginDependencySpec.version
 
 dependencyResolutionManagement {
     repositories {
