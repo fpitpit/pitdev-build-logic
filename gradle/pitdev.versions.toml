@@ -51,7 +51,7 @@ kspPlugin = "1.8.21-1.0.11"
 
 mockk = "1.13.5"
 
-robolectric = "4.10.2"
+robolectric = "4.10.3"
 
 sonarqubePlugin = "4.0.0.2929"
 squareupMoshi = "1.15.0"
