@@ -69,6 +69,7 @@ android-tools-build-gradle-api = { group = "com.android.tools.build", name = "gr
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidxActivity" }
 #androix compose
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
+androidx-compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "composeKotlinCompilerExtensionVersion"}
 ## Material Design 3
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 ## or material 2
