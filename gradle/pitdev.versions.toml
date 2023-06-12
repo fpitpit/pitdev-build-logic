@@ -53,7 +53,7 @@ mockk = "1.13.5"
 
 robolectric = "4.10.3"
 
-sonarqubePlugin = "4.2.0.3129"
+sonarqubePlugin = "4.2.1.3168"
 squareupMoshi = "1.15.0"
 squareupOkhttp3 = "4.11.0"
 squareupRetrofit2 = "2.9.0"
@@ -209,7 +209,9 @@ jacoco = { group = "org.jacoco", name = "org.jacoco.core", version.ref = "jacoco
 jetbrains-kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 jetbrains-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 
-navigation-safeargs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgs" }
+navigation-safeargs = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgs" }
+
+sonarqube = { group = "org.sonarsource.scanner.gradle" , name = "sonarqube-gradle-plugin", version.ref = "sonarqubePlugin" }
 
 [bundles]
 #implementation(libs.androidx.compose.ui)
@@ -251,4 +253,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
 
 navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationSafeArgs" }
 
-sonarqube = { id = "org.sonarqube", version.ref = "sonarqubePlugin" }
+sonar-plugin = { id = "org.sonarqube", version.ref = "sonarqubePlugin" }

@@ -52,6 +52,7 @@ dependencies {
     api(libs.android.tools.build.gradle.api)
     api(libs.jetbrains.kotlin.gradle.plugin)
     api(libs.android.tools.build.gradle)
+    api(libs.sonarqube)
     gradleApi()
 }
 
