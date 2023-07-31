@@ -41,12 +41,12 @@ googleTruth = "1.1.5"
 
 jacoco = "0.8.10"
 javaxAnnotationApi = "1.3.2"
-jetbrainsKotlinx = "1.7.3" #1.7.0 is bugged with composeUITest
+jetbrainsKotlinx = "1.7.3"
 junit = "4.13.2"
 
 navigationSafeArgs = "2.6.0"
 
-kotlin = "1.8.21"
+kotlin = "1.9.0"
 kspPlugin = "1.8.22-1.0.11"
 
 mockk = "1.13.5"
