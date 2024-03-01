@@ -46,13 +46,13 @@ internal fun Project.configureJacoco() {
             }
 
             classDirectories.setFrom(
-                fileTree("$buildDir/tmp/kotlin-classes/${variant.name}") {
+                fileTree("${layout.buildDirectory}/tmp/kotlin-classes/${variant.name}") {
                     exclude(coverageExclusions)
                 }
             )
 
             sourceDirectories.setFrom(files("$projectDir/src/main/java", "$projectDir/src/main/kotlin"))
-            executionData.setFrom(file("${project.buildDir}/outputs/unit_test_code_coverage/${variant.name}UnitTest/${testTaskName}.exec"))
+            executionData.setFrom(file("${project.layout.buildDirectory}/outputs/unit_test_code_coverage/${variant.name}UnitTest/${testTaskName}.exec"))
        }
 
         jacocoTestReport.dependsOn(reportTask)
@@ -62,7 +62,7 @@ internal fun Project.configureJacoco() {
         configure<JacocoTaskExtension> {
             // Required for JaCoCo + Robolectric
             // https://github.com/robolectric/robolectric/issues/2230
-            // TODO: Consider removing if not we don't add Robolectric
+            // Consider removing if not we don't add Robolectric
             isIncludeNoLocationClasses = true
 
             // Required for JDK 11 with the above
