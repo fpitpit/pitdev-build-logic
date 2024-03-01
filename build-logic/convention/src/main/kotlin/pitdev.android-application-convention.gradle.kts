@@ -21,11 +21,12 @@ android {
     }
 
     buildTypes {
-        buildTypes {
-            debug {
-                enableUnitTestCoverage = true
-            }
+
+        debug {
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -43,11 +44,13 @@ android {
     }
 
     testOptions {
+        animationsDisabled = true
         unitTests {
+            isReturnDefaultValues = true
             isIncludeAndroidResources = true
+
         }
     }
-
 }
 
 dependencies {
