@@ -115,11 +115,11 @@ class JacocoReportsPlugin : Plugin<Project> {
                 } build."
 
             val javaDirectories = fileTree(
-                "${project.buildDir}/intermediates/javac/${sourcePath}/classes"
+                "${project.layout.buildDirectory}/intermediates/javac/${sourcePath}/classes"
             ) { exclude(excludedFiles) }
 
             val kotlinDirectories = fileTree(
-                "${project.buildDir}/tmp/kotlin-classes/${sourcePath}"
+                "${project.layout.buildDirectory}/tmp/kotlin-classes/${sourcePath}"
             ) { exclude(excludedFiles) }
 
             val coverageSrcDirectories = listOf(
@@ -131,7 +131,7 @@ class JacocoReportsPlugin : Plugin<Project> {
             classDirectories.setFrom(files(javaDirectories, kotlinDirectories))
             additionalClassDirs.setFrom(files(coverageSrcDirectories))
             sourceDirectories.setFrom(files(coverageSrcDirectories))
-            executionData.setFrom(file("${project.buildDir}/outputs/unit_test_code_coverage/${sourceName}UnitTest/${testTaskName}.exec"))
+            executionData.setFrom(file("${project.layout.buildDirectory}/outputs/unit_test_code_coverage/${sourceName}UnitTest/${testTaskName}.exec"))
 
             reports {
                 xml.required.set(true)
