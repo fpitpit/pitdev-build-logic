@@ -39,21 +39,22 @@ internal fun Project.configureJacoco() {
         val reportTask = tasks.register("jacoco${testTaskName.capitalize()}Report", JacocoReport::class.java) {
             group = "reporting"
             dependsOn(testTaskName)
-
+            println("${layout.buildDirectory}")
+            println("$projectDir")
             reports {
                 xml.required.set(true)
                 html.required.set(true)
             }
 
-            classDirectories.setFrom(
-                fileTree("${layout.buildDirectory}/tmp/kotlin-classes/${variant.name}") {
-                    exclude(coverageExclusions)
-                }
-            )
-
+            val filesFilters = layout.buildDirectory.dir("tmp/kotlin-classes/${variant.name}").get().asFileTree.matching {
+                exclude(coverageExclusions)
+            }
+            classDirectories.setFrom(filesFilters)
             sourceDirectories.setFrom(files("$projectDir/src/main/java", "$projectDir/src/main/kotlin"))
-            executionData.setFrom(file("${project.layout.buildDirectory}/outputs/unit_test_code_coverage/${variant.name}UnitTest/${testTaskName}.exec"))
-       }
+            val executionDataVariant = layout.buildDirectory.file("/outputs/unit_test_code_coverage/${variant.name}UnitTest/${testTaskName}.exec").get().asFile
+            executionData.setFrom("${layout.buildDirectory.get()}$executionDataVariant")
+            println("execution data = ${executionData.files}")
+        }
 
         jacocoTestReport.dependsOn(reportTask)
     }
