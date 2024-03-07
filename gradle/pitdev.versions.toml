@@ -46,7 +46,7 @@ junit = "4.13.2"
 
 navigationSafeArgs = "2.6.0"
 
-kotlin = "1.9.0"
+kotlin = "1.9.23"
 kspPlugin = "1.9.0-1.0.13"
 
 mockk = "1.13.5"
