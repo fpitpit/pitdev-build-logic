@@ -23,3 +23,4 @@ dependencyResolutionManagement {
 rootProject.name = "pitdev-build-logic-project"
 include(":app")
 
+include(":log")

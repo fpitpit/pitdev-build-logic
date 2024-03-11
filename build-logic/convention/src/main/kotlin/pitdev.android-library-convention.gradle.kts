@@ -4,7 +4,7 @@ import fr.pitdev.config.libs
 private val libs = project.libs
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("pitdev.android-jacoco-convention")
 }

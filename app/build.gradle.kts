@@ -4,7 +4,6 @@ val version: String by project
 
 plugins {
     id("pitdev.android-compose-convention")
-    id("pitdev.android-jacoco-convention")
 }
 
 android {
@@ -34,4 +33,8 @@ android {
         }
     }
 
+}
+
+dependencies {
+    implementation(project(":log"))
 }

@@ -3,6 +3,8 @@ package fr.pitdev.jacoco
 import com.android.build.api.variant.AndroidComponentsExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.reporting.DirectoryReport
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
@@ -29,6 +31,7 @@ internal fun Project.configureJacoco() {
 
     configure<JacocoPluginExtension> {
         toolVersion = libs.findVersion("jacoco").get().toString()
+        reportsDirectory.set(rootProject.layout.buildDirectory.dir("reports/jacoco"))
     }
     val jacocoTestReport = tasks.create("jacocoTestReport") {
         group = "reporting"
