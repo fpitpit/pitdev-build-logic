@@ -1,7 +1,6 @@
 import fr.pitdev.config.ProjectConfig
 import fr.pitdev.config.libs
-import gradle.kotlin.dsl.accessors._83435450c9c2e2de70d4c6a62095b22d.androidTestImplementation
-import gradle.kotlin.dsl.accessors._83435450c9c2e2de70d4c6a62095b22d.testImplementation
+
 
 private val libs = project.libs
 

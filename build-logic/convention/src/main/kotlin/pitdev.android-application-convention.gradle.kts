@@ -1,8 +1,5 @@
 import fr.pitdev.config.ProjectConfig
 import fr.pitdev.config.libs
-import gradle.kotlin.dsl.accessors._26de896360ce1a181a4a696fe9f86272.implementation
-import gradle.kotlin.dsl.accessors._26de896360ce1a181a4a696fe9f86272.testRuntimeOnly
-
 private val libs = project.libs
 
 plugins {
