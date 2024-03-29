@@ -57,7 +57,7 @@ mockk = "1.13.10"
 robolectric = "4.11.1"
 
 sonarqubePlugin = "4.3.0.3225"
-squareupMoshi = "1.15.0"
+squareupMoshi = "1.15.1"
 squareupOkhttp3 = "4.11.0"
 squareupRetrofit2 = "2.9.0"
 
