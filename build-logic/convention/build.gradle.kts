@@ -1,4 +1,3 @@
-
 plugins {
     `kotlin-dsl`
     `maven-publish`
@@ -17,13 +16,10 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/fpitpit/pitdev-build-logic")
             credentials {
-                username =
-                    project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
-                password =
-                    project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("gpr.user") as String? ?: System.getProperty("github.username")
+                password = project.findProperty("gpr.key") as String? ?: System.getProperty("github.token")
             }
         }
-
     }
     publications {
         register<MavenPublication>(project.name) {
