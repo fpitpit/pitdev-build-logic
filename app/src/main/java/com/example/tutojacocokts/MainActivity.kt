@@ -11,10 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tutojacocokts.ui.theme.TutoJacocoKtsTheme
+import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.d(message = "onCreate")
         setContent {
             TutoJacocoKtsTheme {
                 // A surface container using the 'background' color from the theme
@@ -27,7 +30,14 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.d("onResume")
+    }
+
 }
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
