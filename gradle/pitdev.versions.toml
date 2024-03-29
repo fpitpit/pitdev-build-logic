@@ -48,7 +48,7 @@ junit5 = "5.10.2"
 navigationSafeArgs = "2.7.7"
 
 kotlin = "1.9.23"
-kspPlugin = "1.9.0-1.0.13"
+kspPlugin = "1.9.23-1.0.19"
 
 timber = "5.0.1"
 
