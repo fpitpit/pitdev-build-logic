@@ -1,4 +1,5 @@
 import fr.pitdev.config.ProjectConfig
+
 val buildVersionCode: String by project
 val version: String by project
 
@@ -32,6 +33,9 @@ android {
             dimension = "environment"
         }
     }
+
+
+
 
 }
 
