@@ -12,11 +12,7 @@ val Project.libs: VersionCatalog
 object ProjectConfig {
 
     object AndroidConfig {
-        const val compileSdk = 34
-        const val minSdk = 24
-        const val targetSdk = 34
         val javaVersion: JavaVersion = JavaVersion.VERSION_17
         val kotlinJvmVersion = javaVersion.toString()
-
     }
 }
