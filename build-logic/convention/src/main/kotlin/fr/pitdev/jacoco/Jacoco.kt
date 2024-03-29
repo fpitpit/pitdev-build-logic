@@ -31,7 +31,7 @@ internal fun Project.configureJacoco() {
 
     configure<JacocoPluginExtension> {
         toolVersion = libs.findVersion("jacoco").get().toString()
-        reportsDirectory.set(rootProject.layout.buildDirectory.dir("reports/jacoco"))
+        //reportsDirectory.set(rootProject.layout.buildDirectory.dir("reports/jacoco"))
     }
     val jacocoTestReport = tasks.create("jacocoTestReport") {
         group = "reporting"
@@ -42,8 +42,6 @@ internal fun Project.configureJacoco() {
         val reportTask = tasks.register("jacoco${testTaskName.capitalize()}Report", JacocoReport::class.java) {
             group = "reporting"
             dependsOn(testTaskName)
-            println("${layout.buildDirectory}")
-            println("$projectDir")
             reports {
                 xml.required.set(true)
                 html.required.set(true)
@@ -56,7 +54,6 @@ internal fun Project.configureJacoco() {
             sourceDirectories.setFrom(files("$projectDir/src/main/java", "$projectDir/src/main/kotlin"))
             val executionDataVariant = layout.buildDirectory.file("/outputs/unit_test_code_coverage/${variant.name}UnitTest/${testTaskName}.exec").get().asFile
             executionData.setFrom("${layout.buildDirectory.get()}$executionDataVariant")
-            println("execution data = ${executionData.files}")
         }
 
         jacocoTestReport.dependsOn(reportTask)
