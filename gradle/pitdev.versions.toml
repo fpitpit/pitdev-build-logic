@@ -28,7 +28,7 @@ androidxTestRunner = "1.5.2"
 composeKotlinCompilerExtensionVersion = "1.5.11"
 crashlyticsPlugin = "2.9.9"
 
-desugar = "2.0.3"
+desugar = "2.0.4"
 
 firebaseBom = "32.8.0"
 
