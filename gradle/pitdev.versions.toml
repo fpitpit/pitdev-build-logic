@@ -54,7 +54,7 @@ timber = "5.0.1"
 
 mockk = "1.13.10"
 
-robolectric = "4.11.1"
+robolectric = "4.12.1"
 
 sonarqubePlugin = "4.4.1.3373"
 squareupMoshi = "1.15.1"
