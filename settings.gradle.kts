@@ -4,9 +4,6 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven {
-            url = uri("https://plugins.gradle.org/m2/")
-        }
     }
 }
 
@@ -24,5 +21,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "pitdev-build-logic-project"
-include(":app")
-include(":log")
+include(":app", "log")
+
