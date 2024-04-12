@@ -1,10 +1,8 @@
 package fr.pitdev.jacoco
 
 import com.android.build.api.variant.AndroidComponentsExtension
+import fr.pitdev.config.libs
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.api.file.DirectoryProperty
-import org.gradle.api.reporting.DirectoryReport
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
@@ -26,12 +24,10 @@ private fun String.capitalize() = replaceFirstChar {
 }
 
 internal fun Project.configureJacoco() {
-    val libs = extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
     val androidComponentsExtension = extensions.getByType(AndroidComponentsExtension::class.java)
 
     configure<JacocoPluginExtension> {
-        toolVersion = libs.findVersion("jacoco").get().toString()
-        //reportsDirectory.set(rootProject.layout.buildDirectory.dir("reports/jacoco"))
+        toolVersion = this@configureJacoco.libs.findVersion("jacoco").get().toString()
     }
     val jacocoTestReport = tasks.create("jacocoTestReport") {
         group = "reporting"
