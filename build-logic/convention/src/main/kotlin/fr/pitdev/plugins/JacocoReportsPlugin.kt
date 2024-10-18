@@ -2,6 +2,7 @@ package fr.pitdev.plugins
 
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.Variant
+import fr.pitdev.config.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
@@ -15,10 +16,8 @@ import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import java.util.Locale
 
+
 class JacocoReportsPlugin : Plugin<Project> {
-    private val Project.libs: VersionCatalog
-        get() = extensions.findByType(VersionCatalogsExtension::class)?.named("libs")
-            ?: error("Cannot find version catalog libs: $name")
 
     private val excludedFiles = mutableSetOf(
         "**/R.class",
@@ -52,7 +51,7 @@ class JacocoReportsPlugin : Plugin<Project> {
                 jacocoOnVariant(variant)
             }
             dependencies {
-                "implementation"(libs.findLibrary("jacoco").get())
+                "implementation"(this@with.libs.findLibrary("jacoco").get())
             }
         }
     }

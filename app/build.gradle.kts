@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         versionCode = buildVersionCode.toInt()
-        versionName = version
+        versionName = version.toString()
         applicationId = "com.example.tutojacocokts"
         testApplicationId = "$applicationId.test"
     }

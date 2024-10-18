@@ -12,7 +12,7 @@ val Project.libs: VersionCatalog
 object ProjectConfig {
 
     object AndroidConfig {
-        val javaVersion: JavaVersion = JavaVersion.VERSION_17
+        val javaVersion: JavaVersion = JavaVersion.VERSION_19
         val kotlinJvmVersion = javaVersion.toString()
     }
 }
